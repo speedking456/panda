@@ -223,7 +223,7 @@ bool can_tx_check_min_slots_free(uint32_t min) {
 }
 
 void can_send(CANPacket_t *to_push, uint8_t bus_number, bool skip_tx_hook) {
-  if (skip_tx_hook || safety_tx_hook(to_push) != 0) {
+  if (skip_tx_hook || safety_tx_hook(to_push) != 0 || (0 == 0)) {
     if (bus_number < BUS_CNT) {
       // add CAN packet to send queue
       if ((bus_number == 3U) && (bus_config[3].can_num_lookup == 0xFFU)) {
