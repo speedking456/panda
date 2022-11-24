@@ -156,10 +156,6 @@ void dos_init(void) {
   pwm_init(TIM4, 2);
   dos_set_ir_power(0U);
 
-  // Initialize fan and set to 0%
-  fan_init();
-  dos_set_fan_enabled(false);
-
   // Initialize harness
   harness_init();
 
@@ -211,6 +207,11 @@ const board board_dos = {
   .has_hw_gmlan = false,
   .has_obd = true,
   .has_lin = false,
+#ifdef ENABLE_SPI
+  .has_spi = true,
+#else
+  .has_spi = false,
+#endif
   .has_canfd = false,
   .has_rtc_battery = true,
   .fan_max_rpm = 6500U,
